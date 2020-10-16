@@ -2,7 +2,7 @@
 
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        return queryInterface.createTable('recipients', {
+        return queryInterface.createTable('deliverymens', {
             id: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
@@ -13,27 +13,14 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            street: {
-                type: Sequelize.STRING,
-                allowNull: false
-            },
-            number: {
+            avatar_id: {
                 type: Sequelize.INTEGER,
-                allowNull: false
-            },
-            complement: {
-                type: Sequelize.STRING,
+                references: { model: 'files', key: 'id' },
+                onUpdate: 'CASCADE',
+                onDelete: 'SET NULL',
                 allowNull: true
             },
-            state: {
-                type: Sequelize.STRING,
-                allowNull: false
-            },
-            city: {
-                type: Sequelize.STRING,
-                allowNull: false
-            },
-            zip_code: {
+            email: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
@@ -49,6 +36,6 @@ module.exports = {
     },
 
     down: (queryInterface) => {
-        return queryInterface.dropTable('recipients');
+        return queryInterface.dropTable('deliverymens');
     }
 };
